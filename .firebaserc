@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "scientificapps-85c76"
+  },
+  "targets": {
+    "scientificapps-85c76": {
+      "hosting": {
+        "estagio": [
+          "dutra-estagio"
+        ]
+      }
+    }
+  }
+}

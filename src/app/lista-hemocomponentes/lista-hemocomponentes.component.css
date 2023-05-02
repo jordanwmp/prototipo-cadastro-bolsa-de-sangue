@@ -1,0 +1,14 @@
+.row
+{
+    margin-bottom: 20px;
+}
+
+table thead, table tbody
+{
+    text-align: center !important;
+}
+
+table .bi
+{
+    cursor: pointer;
+}

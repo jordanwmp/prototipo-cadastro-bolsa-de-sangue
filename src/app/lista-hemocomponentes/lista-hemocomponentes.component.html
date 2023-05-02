@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Hemocomponentes</h1>
+        </div>
+    </div>
+
+    <!--<div class="row">
+        <div class="col-sm-12">
+            <h3>Registros</h3>
+        </div>
+    </div>-->
+
+    <div class="row">
+        <div class="col-sm-12">
+            <button class="btn btn-primary" routerLink="/cadastrar-hemocomponentes">Cadastrar</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table table-responsive">
+                <thead>
+                  <tr>
+                    <th scope="col">Nº</th>
+                    <th scope="col">Registro</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Nº bolsa</th>
+                    <th scope="col">Apta</th>
+                    <th scope="col">Unidade</th>
+                    <th scope="col">Visualizar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of data; let i = index;">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{item.registro}}</td>
+                    <td>{{item.data}}</td>
+                    <td>{{item.numero_bolsa}}</td>
+                    <td>{{item.apta}}</td>
+                    <td>{{item.unidade}}</td>
+                    <td><i class="bi bi-eye-fill"></i></td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  <li class="page-item"><a class="page-link" >Anterior</a></li>
+                  <li class="page-item"><a class="page-link" >1</a></li>
+                  <li class="page-item"><a class="page-link" >2</a></li>
+                  <li class="page-item"><a class="page-link" >3</a></li>
+                  <li class="page-item"><a class="page-link" >Próximo</a></li>
+                </ul>
+              </nav>
+        </div>
+    </div>
+
+</div>

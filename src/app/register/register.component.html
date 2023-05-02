@@ -1,0 +1,168 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col-12-sm-12">
+            <h1>Cadastrar hemocomponentes</h1>
+        </div>
+    </div>
+
+    <form>
+        <div class="row">
+
+            <div class="col-12-12 col-sm-12 col-md-6">
+                <div class="form-group">
+                    <label class="form-label" for="autocomplete-input">Registro</label>
+                    <input class="form-control" type="number" id="autocomplete-input" placeholder="Registro">
+                </div>
+            </div>
+
+            <div class="col-12-12 col-sm-12 col-md-6">
+                <div class="form-group">
+                    <label class="form-label" for="autocomplete-input">Data</label>
+                    <input class="form-control" type="date" id="autocomplete-input">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-6">
+                <div class="form-group">
+                    <label class="form-label" for="selectHemocomponente">Tipo de Hemocomponentes</label>
+                    <select class="form-select" id="selectHemocomponente" (change)="toogle()" [(ngModel)]="homocomponent" [ngModelOptions]="{standalone: true}">
+                        <option value="" disabled selected>Tipo de Hemocomponentes</option>
+                        <option *ngFor="let item of tipo_homocomponents" [value]="item">{{item}}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-6">
+
+                <div class="form-group" *ngIf="disabled_input_homocomponent; else enableHomocomponentes">
+                    <label class="form-label" for="autocomplete-input">{{input_homocomponent_label}}</label>
+                    <input class="form-control" type="text" id="autocomplete-input" [disabled]="disabled_input_homocomponent">
+                </div>
+
+                <ng-template #enableHomocomponentes>
+                    <div class="form-group">
+                        <label class="form-label" for="selectHemocomponente">{{input_homocomponent_label}}</label>
+                        <select 
+                            class="form-select" 
+                            id="selectHemocomponente" 
+                        >
+                            <option value="" disabled selected>{{input_homocomponent_label}}</option>
+                            <option *ngFor="let item of homocomponentOptions" [value]="item">{{item}}</option>
+                        </select>
+                    </div>
+                </ng-template>
+                
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-12 col-sm-12 col-md-4">
+
+                <div class="form-group">
+                    <label class="form-label" for="selectHemocomponente">Tipo Sanguíneo</label>
+                    <select class="form-select" id="selectHemocomponente">
+                        <option value="" disabled selected>Tipo Sanguíneo</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-4">
+                <div class="form-group">
+                    <label class="form-label" for="selectHemocomponente">Fator RH</label>
+                    <select class="form-select" id="selectHemocomponente">
+                        <option value="" disabled selected>Fator RH</option>
+                        <option value="positivo">Positivo</option>
+                        <option value="negativo">Negativo</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-4">
+                <div class="form-group">
+                    <label class="form-label" for="autocomplete-input">Nº Bolsa</label>
+                    <input class="form-control" type="number" id="autocomplete-input" placeholder="Nº da Bolsa">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-12 col-sm-12 col-md-4">
+                <div class="form-group">
+                    <label class="form-label" for="autocomplete-input">Amostra do tupo coletor</label>
+                    <input class="form-control" type="number" id="autocomplete-input" placeholder="Amostra do tupo coletor">
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-4">
+               <div class="form-group">
+                    <label class="form-label" for="autocomplete-input">Volume</label>
+                    <input class="form-control" type="number" id="autocomplete-input" placeholder="Volume">
+               </div>
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-4">
+                <div class="form-group">
+                    <label class="form-label" for="autocomplete-input">Validade</label>
+                    <input class="form-control" type="date" id="autocomplete-input">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-12 col-sm-12 col-md-6">
+                <div class="form-group">
+                    <label class="form-label" for="selectSituacaoBolsa">Situação da bolsa</label>
+                    <select class="form-select" id="selectSituacaoBolsa">
+                        <option value="" disabled selected>Situação da bolsa</option>
+                        <option value="apta">Apta</option>
+                        <option value="nao-apta">Não Apto</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-6">
+               <div class="form-group">
+                <label class="form-label" for="selectUnidadeDutra">Unidade Dutra</label>
+                <select class="form-select" id="selectUnidadeDutra">
+                    <option value="" disabled selected>Unidade Dutra</option>
+                    <option value="dutra">Dutra</option>
+                    <option value="materno">Materno</option>
+                </select>
+               </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-sm-12">
+                <div class="form-group">
+                    <label class="form-label" for="autocomplete-input">Observação</label>
+                    <textarea rows="4" class="form-control" type="date" placeholder="Observação"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-sm-12">
+                <button class="btn btn-primary" style="margin-right: 10px;">Cadastrar</button>
+                <button class="btn btn-danger" routerLink="/lista-hemocomponentes">Cancelar</button>
+            </div>
+        </div>
+
+
+    </form>
+
+</div>
