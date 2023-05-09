@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { ListaHemocomponentesComponent } from './lista-hemocomponentes/lista-hemocomponentes.component';
+import { SelectHospitalComponent } from './select-hospital/select-hospital.component';
 
 const routes: Routes = [
-  { path: '',   redirectTo: '/lista-hemocomponentes', pathMatch: 'full' }, 
+  { path: '',   redirectTo: '/selecionar-hospital', pathMatch: 'full' }, 
   {
     path: 'lista-hemocomponentes',
     component: ListaHemocomponentesComponent
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: 'cadastrar-hemocomponentes',
     component: RegisterComponent
+  },
+  {
+    path: 'selecionar-hospital',
+    component: SelectHospitalComponent
   }
 ];
 

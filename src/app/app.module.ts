@@ -5,13 +5,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule } from '@angular/forms';
-import { ListaHemocomponentesComponent } from './lista-hemocomponentes/lista-hemocomponentes.component'
+import { ListaHemocomponentesComponent } from './lista-hemocomponentes/lista-hemocomponentes.component';
+import { SelectHospitalComponent } from './select-hospital/select-hospital.component';
+import { NavbarComponent } from './navbar/navbar.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
-    ListaHemocomponentesComponent
+    ListaHemocomponentesComponent,
+    SelectHospitalComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

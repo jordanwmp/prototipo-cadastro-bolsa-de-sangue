@@ -1,0 +1,23 @@
+<div class="container-hospital">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Logo_da_EBSERH.png">
+    <h3>Selecione o hospital</h3>
+    <div class="form-group">
+        <label class="form-label" for="selectHemocomponente">Hospital</label>
+        <select 
+            class="form-select" 
+            id="selectHemocomponente" 
+            (change)="toggleHospital()" [(ngModel)]="selectHospital" [ngModelOptions]="{standalone: true}"
+        >
+            <option value="" disabled selected>Hospital</option>
+            <option value="Dutra">Dutra</option>
+            <option value="Materno">Materno</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <button 
+                class="btn btn-primary" 
+                [disabled]="!selectHospital"
+                (click)="callRegister()"
+                >Continuar</button>
+    </div>
+</div>

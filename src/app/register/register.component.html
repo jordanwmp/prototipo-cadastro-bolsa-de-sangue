@@ -1,8 +1,10 @@
-<div class="container">
+<app-navbar></app-navbar>
+
+<div class="container" style="margin-top: 10px;">
 
     <div class="row">
         <div class="col-12-sm-12">
-            <h1>Cadastrar hemocomponentes</h1>
+            <h3>Cadastrar Hemocomponentes</h3>
         </div>
     </div>
 
@@ -11,35 +13,71 @@
 
             <div class="col-12-12 col-sm-12 col-md-6">
                 <div class="form-group">
-                    <label class="form-label" for="autocomplete-input">Registro</label>
-                    <input class="form-control" type="number" id="autocomplete-input" placeholder="Registro">
+                    <label class="form-label" for="autocomplete-input-re">Registro</label>
+                    <input 
+                            class="form-control" 
+                            type="number" 
+                            id="autocomplete-input-re" 
+                            placeholder="Registro"
+                            [(ngModel)]="hospital.novo_hemocomponente.registro" [ngModelOptions]="{standalone: true}"
+                            >
                 </div>
             </div>
 
-            <div class="col-12-12 col-sm-12 col-md-6">
+            <div class="col-12-12 col-sm-12 col-md-3">
                 <div class="form-group">
-                    <label class="form-label" for="autocomplete-input">Data</label>
-                    <input class="form-control" type="date" id="autocomplete-input">
+                    <label class="form-label" for="autocomplete-input-data">Data</label>
+                    <input 
+                            class="form-control" 
+                            type="date" 
+                            id="autocomplete-input-data" 
+                            [(ngModel)]="hospital.novo_hemocomponente.data" [ngModelOptions]="{standalone: true}"
+                            >
                 </div>
             </div>
+
+            <div class="col-12-12 col-sm-12 col-md-3">
+                <div class="form-group">
+                    <label class="form-label" for="autocomplete-input-hour">Hora</label>
+                    <input 
+                            class="form-control" 
+                            type="time" 
+                            id="autocomplete-input-hour" 
+                            [(ngModel)]="hospital.novo_hemocomponente.hora"
+                            [ngModelOptions]="{standalone: true}"
+                            >
+                </div>
+            </div>
+
         </div>
 
         <div class="row">
-            <div class="col-12 col-sm-12 col-md-6">
+            <div class="col-12 col-sm-12 col-md-{{columnsChange}}">
                 <div class="form-group">
                     <label class="form-label" for="selectHemocomponente">Tipo de Hemocomponentes</label>
-                    <select class="form-select" id="selectHemocomponente" (change)="toogle()" [(ngModel)]="homocomponent" [ngModelOptions]="{standalone: true}">
+                    <select 
+                        class="form-select" 
+                        id="selectHemocomponente" 
+                        (change)="toogle()" 
+                        [(ngModel)]="hospital.novo_hemocomponente.tipoDeHemocomponente" 
+                        [ngModelOptions]="{standalone: true}"
+                        >
                         <option value="" disabled selected>Tipo de Hemocomponentes</option>
                         <option *ngFor="let item of tipo_homocomponents" [value]="item">{{item}}</option>
                     </select>
                 </div>
             </div>
 
-            <div class="col-12 col-sm-12 col-md-6">
+            <div class="col-12 col-sm-12 col-md-{{columnsChange}}">
 
                 <div class="form-group" *ngIf="disabled_input_homocomponent; else enableHomocomponentes">
                     <label class="form-label" for="autocomplete-input">{{input_homocomponent_label}}</label>
-                    <input class="form-control" type="text" id="autocomplete-input" [disabled]="disabled_input_homocomponent">
+                    <input 
+                        class="form-control" 
+                        type="text" 
+                        id="autocomplete-input" 
+                        [disabled]="disabled_input_homocomponent"
+                        >
                 </div>
 
                 <ng-template #enableHomocomponentes>
@@ -48,13 +86,29 @@
                         <select 
                             class="form-select" 
                             id="selectHemocomponente" 
+                            (change)="toggleHemocomponent()" 
+                            [(ngModel)]="selectHemocomponente" 
+                            [ngModelOptions]="{standalone: true}"
                         >
                             <option value="" disabled selected>{{input_homocomponent_label}}</option>
                             <option *ngFor="let item of homocomponentOptions" [value]="item">{{item}}</option>
                         </select>
                     </div>
                 </ng-template>
-                
+            </div>
+
+            <div class="col-12 col-sm-12 col-md-4" *ngIf="showNumberOfFraction">
+                <div class="form-group">
+                    <label class="form-label" for="numeroDaFracao">Nº da Fração</label>
+                    <input 
+                        class="form-control" 
+                        type="number" 
+                        id="numeroDaFracao" 
+                        placeholder="Nº da Fração"
+                        [(ngModel)]="hospital.novo_hemocomponente.numeroDaFracao" 
+                        [ngModelOptions]="{standalone: true}"
+                        >
+                </div>
             </div>
 
         </div>
@@ -65,11 +119,17 @@
 
                 <div class="form-group">
                     <label class="form-label" for="selectHemocomponente">Tipo Sanguíneo</label>
-                    <select class="form-select" id="selectHemocomponente">
+                    <select 
+                        class="form-select" 
+                        id="selectHemocomponente"
+                        [(ngModel)]="hospital.novo_hemocomponente.tipoSanguineo" 
+                        [ngModelOptions]="{standalone: true}"
+                        >
                         <option value="" disabled selected>Tipo Sanguíneo</option>
                         <option value="A">A</option>
                         <option value="B">B</option>
-                        <option value="C">C</option>
+                        <option value="AB">AB</option>
+                        <option value="O">O</option>
                     </select>
                 </div>
 
@@ -78,10 +138,16 @@
             <div class="col-12 col-sm-12 col-md-4">
                 <div class="form-group">
                     <label class="form-label" for="selectHemocomponente">Fator RH</label>
-                    <select class="form-select" id="selectHemocomponente">
+                    <select 
+                        class="form-select" 
+                        id="selectHemocomponente"
+                        [(ngModel)]="hospital.novo_hemocomponente.fatorRH" 
+                        [ngModelOptions]="{standalone: true}"
+                        >
                         <option value="" disabled selected>Fator RH</option>
-                        <option value="positivo">Positivo</option>
-                        <option value="negativo">Negativo</option>
+                        <option value="Positivo">Positivo</option>
+                        <option value="Negativo">Negativo</option>
+                        <option value="Inconclusivo">Inconclusivo</option>
                     </select>
                 </div>
             </div>
@@ -89,7 +155,14 @@
             <div class="col-12 col-sm-12 col-md-4">
                 <div class="form-group">
                     <label class="form-label" for="autocomplete-input">Nº Bolsa</label>
-                    <input class="form-control" type="number" id="autocomplete-input" placeholder="Nº da Bolsa">
+                    <input 
+                        class="form-control" 
+                        type="number" 
+                        id="autocomplete-input" 
+                        placeholder="Nº da Bolsa"
+                        [(ngModel)]="hospital.novo_hemocomponente.numeroDaBolsa" 
+                        [ngModelOptions]="{standalone: true}"
+                        >
                 </div>
             </div>
 
@@ -99,22 +172,42 @@
 
             <div class="col-12 col-sm-12 col-md-4">
                 <div class="form-group">
-                    <label class="form-label" for="autocomplete-input">Amostra do tupo coletor</label>
-                    <input class="form-control" type="number" id="autocomplete-input" placeholder="Amostra do tupo coletor">
+                    <label class="form-label" for="autocomplete-input">Amostra do tubo coletor</label>
+                    <input 
+                        class="form-control" 
+                        type="number" 
+                        id="autocomplete-input" 
+                        placeholder="Amostra do tupo coletor"
+                        [(ngModel)]="hospital.novo_hemocomponente.amostraDoTuboColetor" 
+                        [ngModelOptions]="{standalone: true}"
+                        >
                 </div>
             </div>
 
             <div class="col-12 col-sm-12 col-md-4">
                <div class="form-group">
-                    <label class="form-label" for="autocomplete-input">Volume</label>
-                    <input class="form-control" type="number" id="autocomplete-input" placeholder="Volume">
+                    <label class="form-label" for="autocomplete-input">Volume (mL)</label>
+                    <input 
+                        class="form-control" 
+                        type="number" 
+                        id="autocomplete-input" 
+                        placeholder="Volume"
+                        [(ngModel)]="hospital.novo_hemocomponente.volume" 
+                        [ngModelOptions]="{standalone: true}"
+                        >
                </div>
             </div>
 
             <div class="col-12 col-sm-12 col-md-4">
                 <div class="form-group">
                     <label class="form-label" for="autocomplete-input">Validade</label>
-                    <input class="form-control" type="date" id="autocomplete-input">
+                    <input 
+                        class="form-control" 
+                        type="date" 
+                        id="autocomplete-input"
+                        [(ngModel)]="hospital.novo_hemocomponente.validade" 
+                        [ngModelOptions]="{standalone: true}"
+                        >
                 </div>
             </div>
 
@@ -125,32 +218,69 @@
             <div class="col-12 col-sm-12 col-md-6">
                 <div class="form-group">
                     <label class="form-label" for="selectSituacaoBolsa">Situação da bolsa</label>
-                    <select class="form-select" id="selectSituacaoBolsa">
-                        <option value="" disabled selected>Situação da bolsa</option>
+                    <select 
+                        class="form-select" 
+                        id="selectSituacaoBolsa" 
+                        [(ngModel)]="hospital.novo_hemocomponente.situacaoDaBolsa" 
+                        [ngModelOptions]="{standalone: true}"
+                        >
+                        <option value="situacao_da_bolsa" disabled selected>Situação da bolsa</option>
                         <option value="apta">Apta</option>
-                        <option value="nao-apta">Não Apto</option>
+                        <option value="nao-apta">Não Apta</option>
                     </select>
                 </div>
             </div>
 
             <div class="col-12 col-sm-12 col-md-6">
                <div class="form-group">
-                <label class="form-label" for="selectUnidadeDutra">Unidade Dutra</label>
-                <select class="form-select" id="selectUnidadeDutra">
+                <label class="form-label" for="SegmentoDaBolsa">Segmento da bolsa</label>
+                <input 
+                    class="form-control" 
+                    type="text" 
+                    id="SegmentoDaBolsa" 
+                    placeholder="Segmento da Bolsa"
+                    [(ngModel)]="hospital.novo_hemocomponente.segmentoDaBolsa" 
+                    [ngModelOptions]="{standalone: true}"
+                    >
+                <!--<select class="form-select" id="selectUnidadeDutra">
                     <option value="" disabled selected>Unidade Dutra</option>
                     <option value="dutra">Dutra</option>
                     <option value="materno">Materno</option>
-                </select>
+                </select>-->
                </div>
             </div>
 
         </div>
 
+        <div class="row" *ngIf="hospital.novo_hemocomponente.segmentoDaBolsa === 'nao-apta'">
+            <div class="col-12 col-sm-12">
+                <div class="form-group">
+                    <label class="form-label" for="selectSituacaoBolsaExplicacaoNA">Bolsa não apta</label>
+                    <textarea 
+                        rows="4"
+                        id="selectSituacaoBolsaExplicacaoNA"
+                        class="form-control"
+                        placeholder="Explique o porque da bolsa não está apta"
+                        [(ngModel)]="hospital.novo_hemocomponente.situcacaoBolsaExplicacao" 
+                        [ngModelOptions]="{standalone: true}"
+                        ></textarea>
+                </div>
+        </div>
+    </div>
+
         <div class="row">
             <div class="col-12 col-sm-12">
                 <div class="form-group">
                     <label class="form-label" for="autocomplete-input">Observação</label>
-                    <textarea rows="4" class="form-control" type="date" placeholder="Observação"></textarea>
+                    <textarea 
+                        rows="4" 
+                        class="form-control" 
+                        type="date" 
+                        placeholder="Observação"
+                        [(ngModel)]="hospital.novo_hemocomponente.observacao" 
+                        [ngModelOptions]="{standalone: true}"
+                        >
+                    </textarea>
                 </div>
             </div>
         </div>
@@ -158,7 +288,7 @@
         <div class="row">
             <div class="col-12 col-sm-12">
                 <button class="btn btn-primary" style="margin-right: 10px;">Cadastrar</button>
-                <button class="btn btn-danger" routerLink="/lista-hemocomponentes">Cancelar</button>
+                <!--<button class="btn btn-danger" routerLink="/lista-hemocomponentes">Cancelar</button>-->
             </div>
         </div>
 
@@ -166,3 +296,11 @@
     </form>
 
 </div>
+
+<div>
+    <p *ngFor="let item of hospital.novo_hemocomponente | keyvalue">
+        {{item.key}} : {{item.value}}
+    </p>
+</div>
+
+<app-lista-hemocomponentes></app-lista-hemocomponentes>

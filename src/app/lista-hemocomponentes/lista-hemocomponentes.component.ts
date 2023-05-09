@@ -22,7 +22,7 @@ export class ListaHemocomponentesComponent implements OnInit {
       apta: 'Apta',
       unidade: 'Dutra'
     },
-    {
+    /*{
       registro: 123,
       data: '28/04/2023',
       numero_bolsa: 561,
@@ -147,7 +147,7 @@ export class ListaHemocomponentesComponent implements OnInit {
       numero_bolsa: 561,
       apta: 'Apta',
       unidade: 'Dutra'
-    },
+    },*/
   ]
 
   constructor() { }
