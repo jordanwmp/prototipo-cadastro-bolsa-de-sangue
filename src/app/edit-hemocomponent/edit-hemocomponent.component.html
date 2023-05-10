@@ -4,7 +4,7 @@
 
     <div class="row">
         <div class="col-12-sm-12">
-            <h3>Cadastrar Hemocomponentes</h3>
+            <h3>Editar Hemocomponentes</h3>
         </div>
     </div>
 
@@ -226,7 +226,7 @@
                         >
                         <option value="situacao_da_bolsa" disabled selected>Situação da bolsa</option>
                         <option value="apta">Apta</option>
-                        <option value="nao-apta">Não Apta</option>
+                        <option value="Não apta">Não Apta</option>
                     </select>
                 </div>
             </div>
@@ -287,13 +287,30 @@
 
         <div class="row">
             <div class="col-12 col-sm-12">
+                <div class="form-group">
+                    <label class="form-label" for="autocomplete-input">Justifique o motivo da edição</label>
+                    <textarea 
+                        rows="4" 
+                        class="form-control" 
+                        type="date" 
+                        placeholder="Observação"
+                        [(ngModel)]="hospital.novo_hemocomponente.justificativaEdicao" 
+                        [ngModelOptions]="{standalone: true}"
+                        >
+                    </textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-12 col-sm-12">
                 <button 
                         type="button"    
                         class="btn btn-primary" 
                         style="margin-right: 10px;"
                         (click)="update()"
                         >Atualizar</button>
-                <!--<button class="btn btn-danger" routerLink="/lista-hemocomponentes">Cancelar</button>-->
+                <button class="btn btn-danger" (click)="cancel()">Cancelar</button>
             </div>
         </div>
 

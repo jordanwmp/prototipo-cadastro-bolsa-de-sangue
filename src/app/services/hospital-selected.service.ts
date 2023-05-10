@@ -13,7 +13,7 @@ export class HospitalSelectedService {
   public novo_hemocomponente:any = {
     registro: '',
     data: this._date.toISOString().slice(0, 10),
-    hora: `${this._date.getHours()}:${this._date.getMinutes()}`,
+    hora:  this.formatData(this._date.getHours(), this._date.getMinutes()), //`${this._date.getHours()}:${this._date.getMinutes()}`,
     tipoDeHemocomponente: '',
     concentradoDeHermacias: '',
     numeroDaFracao: '',
@@ -33,8 +33,8 @@ export class HospitalSelectedService {
 
   private data: any[] = [
     {
-      registro: '123',
-      data: this._date.toISOString().slice(0, 10),
+      registro: '1493612949',
+      data: '2019-11-09',
       hora: `${this._date.getHours()}:${this._date.getMinutes()}`,
       tipoDeHemocomponente: 'Concentrado de Hemácias',
       concentradoDeHermacias: 'Concentrado de Hemácias Filtrado – CHF',
@@ -42,10 +42,30 @@ export class HospitalSelectedService {
       concentradoDePlaquetas: 'Concentrado de Plaquetas Filtrado – CPF',
       tipoSanguineo: 'O',
       fatorRH: 'Inconclusivo',
-      numeroDaBolsa: '3456',
+      numeroDaBolsa: '1973',
       amostraDoTuboColetor: 'Lorem ipsum',
-      volume: '10',
-      validade: '2023-04-10',
+      volume: '50',
+      validade: '2022-01-02',
+      situacaoDaBolsa: 'Não apta',
+      situcacaoBolsaExplicacao: 'Lorem ipsum',
+      segmentoDaBolsa: 'Lorem ipsum',
+      observacao: 'lorem ipsum',
+      justificativaEdicao: 'lorem ipsum'
+    },
+    {
+      registro: '4312846192',
+      data: '2021-01-02',//this._date.toISOString().slice(0, 10),
+      hora: `${this._date.getHours()}:${this._date.getMinutes()}`,
+      tipoDeHemocomponente: 'Concentrado de Hemácias',
+      concentradoDeHermacias: 'Concentrado de Hemácias Filtrado – CHF',
+      numeroDaFracao: '10',
+      concentradoDePlaquetas: 'Concentrado de Plaquetas Filtrado – CPF',
+      tipoSanguineo: 'O',
+      fatorRH: 'Negativo',
+      numeroDaBolsa: '9346',
+      amostraDoTuboColetor: 'Lorem ipsum',
+      volume: '80',
+      validade: '2022-09-11',
       situacaoDaBolsa: 'Apta',
       situcacaoBolsaExplicacao: 'Lorem ipsum',
       segmentoDaBolsa: 'Lorem ipsum',
@@ -53,8 +73,8 @@ export class HospitalSelectedService {
       justificativaEdicao: 'lorem ipsum'
     },
     {
-      registro: '123',
-      data: this._date.toISOString().slice(0, 10),
+      registro: '9572948719',
+      data: '2021-01-13',//this._date.toISOString().slice(0, 10),
       hora: `${this._date.getHours()}:${this._date.getMinutes()}`,
       tipoDeHemocomponente: 'Concentrado de Hemácias',
       concentradoDeHermacias: 'Concentrado de Hemácias Filtrado – CHF',
@@ -62,49 +82,29 @@ export class HospitalSelectedService {
       concentradoDePlaquetas: 'Concentrado de Plaquetas Filtrado – CPF',
       tipoSanguineo: 'O',
       fatorRH: 'Inconclusivo',
-      numeroDaBolsa: '3456',
+      numeroDaBolsa: '3613',
       amostraDoTuboColetor: 'Lorem ipsum',
-      volume: '10',
-      validade: '2023-04-10',
-      situacaoDaBolsa: 'Apta',
+      volume: '30',
+      validade: '2023-05-10',
+      situacaoDaBolsa: 'Não apta',
       situcacaoBolsaExplicacao: 'Lorem ipsum',
       segmentoDaBolsa: 'Lorem ipsum',
       observacao: 'lorem ipsum',
       justificativaEdicao: 'lorem ipsum'
     },
     {
-      registro: '123',
-      data: this._date.toISOString().slice(0, 10),
+      registro: '8591874918',
+      data: '2020-12-12',//this._date.toISOString().slice(0, 10),
       hora: `${this._date.getHours()}:${this._date.getMinutes()}`,
       tipoDeHemocomponente: 'Concentrado de Hemácias',
       concentradoDeHermacias: 'Concentrado de Hemácias Filtrado – CHF',
       numeroDaFracao: '10',
       concentradoDePlaquetas: 'Concentrado de Plaquetas Filtrado – CPF',
       tipoSanguineo: 'O',
-      fatorRH: 'Inconclusivo',
-      numeroDaBolsa: '3456',
+      fatorRH: 'Positivo',
+      numeroDaBolsa: '3713',
       amostraDoTuboColetor: 'Lorem ipsum',
-      volume: '10',
-      validade: '2023-04-10',
-      situacaoDaBolsa: 'Apta',
-      situcacaoBolsaExplicacao: 'Lorem ipsum',
-      segmentoDaBolsa: 'Lorem ipsum',
-      observacao: 'lorem ipsum',
-      justificativaEdicao: 'lorem ipsum'
-    },
-    {
-      registro: '123',
-      data: this._date.toISOString().slice(0, 10),
-      hora: `${this._date.getHours()}:${this._date.getMinutes()}`,
-      tipoDeHemocomponente: 'Concentrado de Hemácias',
-      concentradoDeHermacias: 'Concentrado de Hemácias Filtrado – CHF',
-      numeroDaFracao: '10',
-      concentradoDePlaquetas: 'Concentrado de Plaquetas Filtrado – CPF',
-      tipoSanguineo: 'O',
-      fatorRH: 'Inconclusivo',
-      numeroDaBolsa: '3456',
-      amostraDoTuboColetor: 'Lorem ipsum',
-      volume: '10',
+      volume: '40',
       validade: '2023-04-10',
       situacaoDaBolsa: 'Apta',
       situcacaoBolsaExplicacao: 'Lorem ipsum',
@@ -114,6 +114,21 @@ export class HospitalSelectedService {
     },
     
   ]
+
+  formatData(hour:number|string, minute:number|string)
+  {
+    if(hour.toString().length < 2)
+    {
+      hour =  '0' + hour
+    }
+
+    if(minute.toString().length < 2)
+    {
+      minute =  '0' + minute
+    }
+
+    return `${hour}:${minute}`
+  }
 
   constructor() { }
 
@@ -138,7 +153,10 @@ export class HospitalSelectedService {
   {
     for(let key of Object.keys(this.novo_hemocomponente))
     {
-      this.novo_hemocomponente[`${key}`] = ''
+      if(key !== 'data' && key !== 'hora')
+      {
+        this.novo_hemocomponente[`${key}`] = ''
+      }
     }
   }
 
@@ -149,7 +167,8 @@ export class HospitalSelectedService {
 
   editData(index:number, data:any)
   {
-    this.data[index] = data;
+    const new_data = {...data}
+    this.data[index] = new_data;
   }
 
 }

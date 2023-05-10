@@ -8,7 +8,11 @@ import { FormsModule } from '@angular/forms';
 import { ListaHemocomponentesComponent } from './lista-hemocomponentes/lista-hemocomponentes.component';
 import { SelectHospitalComponent } from './select-hospital/select-hospital.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { EditHemocomponentComponent } from './edit-hemocomponent/edit-hemocomponent.component'
+import { EditHemocomponentComponent } from './edit-hemocomponent/edit-hemocomponent.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +26,9 @@ import { EditHemocomponentComponent } from './edit-hemocomponent/edit-hemocompon
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

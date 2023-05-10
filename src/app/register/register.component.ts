@@ -51,7 +51,10 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     public hospital: HospitalSelectedService,
-  ) { }
+  ) { 
+    //hospital.novo_hemocomponente.hora = '16:05'
+    console.log('hora tt ', hospital.novo_hemocomponente.hora)
+  }
 
 
   toggleHemocomponent()
@@ -87,12 +90,19 @@ export class RegisterComponent implements OnInit {
       this.input_homocomponent_label = 'Concentrado de Plaquetas';
       this.disabled_input_homocomponent = false;
       this.homocomponentOptions = this.concentrado_de_plaquetas;
+
+      this.columnsChange = 6
+      this.showNumberOfFraction = false
+
       return;
     }
 
-    this. input_homocomponent_label = '*';
+    this.input_homocomponent_label = '*';
     this.disabled_input_homocomponent = true;
     this.homocomponentOptions = [];
+    
+    this.columnsChange = 6
+    this.showNumberOfFraction = false
 
   }
 

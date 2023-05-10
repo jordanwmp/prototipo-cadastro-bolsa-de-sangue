@@ -2,6 +2,8 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { HospitalSelectedService } from '../services/hospital-selected.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
+//import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
+
 declare var $: any;
 
 @Component({
@@ -57,7 +59,8 @@ export class EditHemocomponentComponent implements OnInit, AfterViewInit {
   constructor(
     public hospital: HospitalSelectedService,
     private router: Router,
-    private activatedRouter: ActivatedRoute
+    private activatedRouter: ActivatedRoute,
+    //readonly snackBar: MatSnackBar
   ) { 
     this.activatedRouter.params
     .subscribe((data)=>{
@@ -111,12 +114,19 @@ export class EditHemocomponentComponent implements OnInit, AfterViewInit {
       this.input_homocomponent_label = 'Concentrado de Plaquetas';
       this.disabled_input_homocomponent = false;
       this.homocomponentOptions = this.concentrado_de_plaquetas;
+
+      this.columnsChange = 6
+      this.showNumberOfFraction = false
+
       return;
     }
 
-    this. input_homocomponent_label = '*';
+    this.input_homocomponent_label = '*';
     this.disabled_input_homocomponent = true;
     this.homocomponentOptions = [];
+    
+    this.columnsChange = 6
+    this.showNumberOfFraction = false
 
   }
 
@@ -124,6 +134,17 @@ export class EditHemocomponentComponent implements OnInit, AfterViewInit {
   {
     console.log('update ', this.hospital.novo_hemocomponente)
     this.hospital.editData(this.dataId, this.hospital.novo_hemocomponente)
+    //this.snackBar.open('Hemocomente aatualizado')
+    this.router.navigate(['/cadastrar-hemocomponentes'])
+    .then(()=>{
+      this.hospital.clearHemocomponents()
+    })
+  }
+
+  cancel()
+  {
+    this.hospital.clearHemocomponents()
+    this.router.navigate(['/cadastrar-hemocomponentes'])
   }
 
   ngOnInit(): void {
