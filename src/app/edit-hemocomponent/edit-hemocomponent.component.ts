@@ -143,7 +143,10 @@ export class EditHemocomponentComponent implements OnInit, AfterViewInit {
 
   cancel()
   {
-    this.hospital.clearHemocomponents()
+    this.hospital.editData(this.dataId, this.hospital.novo_hemocomponente)
+    setTimeout(()=>{
+      this.hospital.clearHemocomponents()
+    }, 100)
     this.router.navigate(['/cadastrar-hemocomponentes'])
   }
 

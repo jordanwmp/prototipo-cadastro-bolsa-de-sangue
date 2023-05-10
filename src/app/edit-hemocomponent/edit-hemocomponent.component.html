@@ -302,15 +302,21 @@
             </div>
         </div>
 
-        <div class="row" style="margin-bottom: 20px;">
+        <div class="row">
             <div class="col-12 col-sm-12">
                 <button 
                         type="button"    
                         class="btn btn-primary" 
                         style="margin-right: 10px;"
                         (click)="update()"
+                        style="margin-bottom: 20px;"
                         >Atualizar</button>
-                <button class="btn btn-danger" (click)="cancel()">Cancelar</button>
+                <button 
+                        type="button"
+                        style="margin-left:10px; margin-bottom: 20px;" 
+                        class="btn btn-danger" 
+                        (click)="cancel()">
+                        Cancelar</button>
             </div>
         </div>
 

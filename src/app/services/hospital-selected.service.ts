@@ -24,7 +24,7 @@ export class HospitalSelectedService {
     amostraDoTuboColetor: '',
     volume: '',
     validade: '',
-    situacaoDaBolsa: '',
+    situacaoDaBolsa: 'situacao_da_bolsa',
     situcacaoBolsaExplicacao: '',
     segmentoDaBolsa: '',
     observacao: '',
@@ -156,6 +156,10 @@ export class HospitalSelectedService {
       if(key !== 'data' && key !== 'hora')
       {
         this.novo_hemocomponente[`${key}`] = ''
+      }
+      if(key === 'situacaoDaBolsa')
+      {
+        this.novo_hemocomponente[`${key}`] = 'situacao_da_bolsa'
       }
     }
   }
