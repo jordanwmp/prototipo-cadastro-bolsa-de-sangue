@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { HospitalSelectedService } from '../services/hospital-selected.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista-hemocomponentes',
@@ -7,152 +9,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListaHemocomponentesComponent implements OnInit {
 
-  data:any[] = [
-    {
-      registro: 123,
-      data: '28/04/2023',
-      numero_bolsa: 561,
-      apta: 'Apta',
-      unidade: 'Dutra'
-    },
-    {
-      registro: 123,
-      data: '28/04/2023',
-      numero_bolsa: 561,
-      apta: 'Apta',
-      unidade: 'Dutra'
-    },
-    /*{
-      registro: 123,
-      data: '28/04/2023',
-      numero_bolsa: 561,
-      apta: 'Apta',
-      unidade: 'Dutra'
-    },
-    {
-      registro: 123,
-      data: '28/04/2023',
-      numero_bolsa: 561,
-      apta: 'Apta',
-      unidade: 'Dutra'
-    },
-    {
-      registro: 123,
-      data: '28/04/2023',
-      numero_bolsa: 561,
-      apta: 'Apta',
-      unidade: 'Dutra'
-    },
-    {
-      registro: 123,
-      data: '28/04/2023',
-      numero_bolsa: 561,
-      apta: 'Apta',
-      unidade: 'Dutra'
-    },
-    {
-      registro: 123,
-      data: '28/04/2023',
-      numero_bolsa: 561,
-      apta: 'Apta',
-      unidade: 'Dutra'
-    },
-    {
-      registro: 123,
-      data: '28/04/2023',
-      numero_bolsa: 561,
-      apta: 'Apta',
-      unidade: 'Dutra'
-    },
-    {
-      registro: 123,
-      data: '28/04/2023',
-      numero_bolsa: 561,
-      apta: 'Apta',
-      unidade: 'Dutra'
-    },
-    {
-      registro: 123,
-      data: '28/04/2023',
-      numero_bolsa: 561,
-      apta: 'Apta',
-      unidade: 'Dutra'
-    },
-    {
-      registro: 123,
-      data: '28/04/2023',
-      numero_bolsa: 561,
-      apta: 'Apta',
-      unidade: 'Dutra'
-    },
-    {
-      registro: 123,
-      data: '28/04/2023',
-      numero_bolsa: 561,
-      apta: 'Apta',
-      unidade: 'Dutra'
-    },
-    {
-      registro: 123,
-      data: '28/04/2023',
-      numero_bolsa: 561,
-      apta: 'Apta',
-      unidade: 'Dutra'
-    },
-    {
-      registro: 123,
-      data: '28/04/2023',
-      numero_bolsa: 561,
-      apta: 'Apta',
-      unidade: 'Dutra'
-    },
-    {
-      registro: 123,
-      data: '28/04/2023',
-      numero_bolsa: 561,
-      apta: 'Apta',
-      unidade: 'Dutra'
-    },
-    {
-      registro: 123,
-      data: '28/04/2023',
-      numero_bolsa: 561,
-      apta: 'Apta',
-      unidade: 'Dutra'
-    },
-    {
-      registro: 123,
-      data: '28/04/2023',
-      numero_bolsa: 561,
-      apta: 'Apta',
-      unidade: 'Dutra'
-    },
-    {
-      registro: 123,
-      data: '28/04/2023',
-      numero_bolsa: 561,
-      apta: 'Apta',
-      unidade: 'Dutra'
-    },
-    {
-      registro: 123,
-      data: '28/04/2023',
-      numero_bolsa: 561,
-      apta: 'Apta',
-      unidade: 'Dutra'
-    },
-    {
-      registro: 123,
-      data: '28/04/2023',
-      numero_bolsa: 561,
-      apta: 'Apta',
-      unidade: 'Dutra'
-    },*/
-  ]
+  @Input() newData:any;
+  data:any[] = []
 
-  constructor() { }
+  constructor(
+    private hospital: HospitalSelectedService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+    console.log('onInit list');
+    this.data = [...this.hospital.dataList]
+
+    this.hospital.getData().subscribe((data)=>{
+      console.log('data from subscribe ', data)
+      this.data = [...data]//this.hospital.dataList
+    })
+  }
+
+  addData()
+  {
+    this.data.push(this.newData);
+  }
+
+
+  callEdit(hemocomponent:any, id:string|number)
+  {
+    this.hospital.novo_hemocomponente = hemocomponent
+    this.router.navigate(['/editar-hemocomponente', id])
   }
 
 }

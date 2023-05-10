@@ -7,7 +7,8 @@ import { RegisterComponent } from './register/register.component';
 import { FormsModule } from '@angular/forms';
 import { ListaHemocomponentesComponent } from './lista-hemocomponentes/lista-hemocomponentes.component';
 import { SelectHospitalComponent } from './select-hospital/select-hospital.component';
-import { NavbarComponent } from './navbar/navbar.component'
+import { NavbarComponent } from './navbar/navbar.component';
+import { EditHemocomponentComponent } from './edit-hemocomponent/edit-hemocomponent.component'
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { NavbarComponent } from './navbar/navbar.component'
     RegisterComponent,
     ListaHemocomponentesComponent,
     SelectHospitalComponent,
-    NavbarComponent
+    NavbarComponent,
+    EditHemocomponentComponent
   ],
   imports: [
     BrowserModule,

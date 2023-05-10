@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { ListaHemocomponentesComponent } from './lista-hemocomponentes/lista-hemocomponentes.component';
 import { SelectHospitalComponent } from './select-hospital/select-hospital.component';
+import { EditHemocomponentComponent } from './edit-hemocomponent/edit-hemocomponent.component';
 
 const routes: Routes = [
   { path: '',   redirectTo: '/selecionar-hospital', pathMatch: 'full' }, 
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'selecionar-hospital',
     component: SelectHospitalComponent
+  },
+  {
+    path: 'editar-hemocomponente/:id',
+    component: EditHemocomponentComponent
   }
 ];
 

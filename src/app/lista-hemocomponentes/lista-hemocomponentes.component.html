@@ -21,7 +21,7 @@
                     <th scope="col">Data</th>
                     <th scope="col">Nº bolsa</th>
                     <th scope="col">Apta</th>
-                    <th scope="col">Unidade</th>
+                    <th scope="col">Volume</th>
                     <th scope="col">Visualizar</th>
                   </tr>
                 </thead>
@@ -29,11 +29,11 @@
                   <tr *ngFor="let item of data; let i = index;">
                     <th scope="row">{{i+1}}</th>
                     <td>{{item.registro}}</td>
-                    <td>{{item.data}}</td>
-                    <td>{{item.numero_bolsa}}</td>
-                    <td>{{item.apta}}</td>
-                    <td>{{item.unidade}}</td>
-                    <td><i class="bi bi-eye-fill"></i></td>
+                    <td>{{item.data | date: 'dd/MM/yyyy'}}</td>
+                    <td>{{item.numeroDaBolsa}}</td>
+                    <td>{{item.situacaoDaBolsa}}</td>
+                    <td>{{item.volume}}</td>
+                    <td><i class="bi bi-eye-fill" (click)="callEdit(item, i)"></i></td>
                   </tr>
                 </tbody>
               </table>

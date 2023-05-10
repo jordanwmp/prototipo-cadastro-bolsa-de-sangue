@@ -1,25 +1,28 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { HospitalSelectedService } from '../services/hospital-selected.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 declare var $: any;
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  selector: 'app-edit-hemocomponent',
+  templateUrl: './edit-hemocomponent.component.html',
+  styleUrls: ['./edit-hemocomponent.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class EditHemocomponentComponent implements OnInit, AfterViewInit {
 
   input_homocomponent_label: string = '*';
   disabled_input_homocomponent: boolean = true;
   homocomponent:string = '';
   homocomponentOptions:any[] = []
+
   tipo_homocomponents: string[] = [
     'Concentrado de Hemácias',
     'Concentrado de Plaquetas',
     'Plasma Fresco Congelado – PFC',
     'Crioprecipitado – Crio'
   ]
+  
   concentrado_de_hermacias: string[] = [
     'Concentrado de Hemácias',
     'Concentrado de Hemácias Filtrado – CHF',
@@ -49,9 +52,30 @@ export class RegisterComponent implements OnInit {
   showNumberOfFraction:boolean = false
   selectHemocomponente:any = ''
 
+  dataId!:number;
+
   constructor(
     public hospital: HospitalSelectedService,
-  ) { }
+    private router: Router,
+    private activatedRouter: ActivatedRoute
+  ) { 
+    this.activatedRouter.params
+    .subscribe((data)=>{
+      console.log('edit id ', data)
+      this.dataId = data['id']
+    })
+  }
+
+
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
+      this.toogle()
+    }, 100)
+    setTimeout(()=>{
+      this.toggleHemocomponent()
+    }, 110)
+    
+  }
 
 
   toggleHemocomponent()
@@ -96,15 +120,11 @@ export class RegisterComponent implements OnInit {
 
   }
 
-  register()
+  update()
   {
-    console.log('reg ', this.hospital.novo_hemocomponente)
-    this.hospital.addData(this.hospital.novo_hemocomponente)
-    setTimeout(()=>{
-      this.hospital.clearHemocomponents()
-    }, 500)
+    console.log('update ', this.hospital.novo_hemocomponente)
+    this.hospital.editData(this.dataId, this.hospital.novo_hemocomponente)
   }
-
 
   ngOnInit(): void {
     //this.hospital.novo_hemocomponente.data = this._date.toISOString().slice(0,10)
