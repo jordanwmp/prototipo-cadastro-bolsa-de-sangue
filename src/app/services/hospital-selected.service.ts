@@ -35,7 +35,7 @@ export class HospitalSelectedService {
     {
       registro: '1493612949',
       data: '2019-11-09',
-      hora: `${this._date.getHours()}:${this._date.getMinutes()}`,
+      hora: `08:00`,
       tipoDeHemocomponente: 'Concentrado de Hemácias',
       concentradoDeHermacias: 'Concentrado de Hemácias Filtrado – CHF',
       numeroDaFracao: '10',
@@ -55,7 +55,7 @@ export class HospitalSelectedService {
     {
       registro: '4312846192',
       data: '2021-01-02',//this._date.toISOString().slice(0, 10),
-      hora: `${this._date.getHours()}:${this._date.getMinutes()}`,
+      hora: `11:00`,
       tipoDeHemocomponente: 'Concentrado de Hemácias',
       concentradoDeHermacias: 'Concentrado de Hemácias Filtrado – CHF',
       numeroDaFracao: '10',
@@ -75,7 +75,7 @@ export class HospitalSelectedService {
     {
       registro: '9572948719',
       data: '2021-01-13',//this._date.toISOString().slice(0, 10),
-      hora: `${this._date.getHours()}:${this._date.getMinutes()}`,
+      hora: `14:15`,
       tipoDeHemocomponente: 'Concentrado de Hemácias',
       concentradoDeHermacias: 'Concentrado de Hemácias Filtrado – CHF',
       numeroDaFracao: '10',
@@ -95,7 +95,7 @@ export class HospitalSelectedService {
     {
       registro: '8591874918',
       data: '2020-12-12',//this._date.toISOString().slice(0, 10),
-      hora: `${this._date.getHours()}:${this._date.getMinutes()}`,
+      hora: `16:30`,
       tipoDeHemocomponente: 'Concentrado de Hemácias',
       concentradoDeHermacias: 'Concentrado de Hemácias Filtrado – CHF',
       numeroDaFracao: '10',
